@@ -1,0 +1,273 @@
+Bagian I
+a) Istri dari Vito
+Query: suami(vito,X).
+X = power
+yes
+
+b) Adik dari Elon Musk
+Query: kakak(elonMusk,X).
+X = patrick
+yes
+
+c) Cicit dari Gojo
+Query: anak(X,_S), cucu(_S,gojo).
+X = anya ? 
+yes
+
+d) Paman atau bibi tertua dari Wesly (pilih yang tertua)
+Query: cucu(wesly,_KB), cucu(wesly,_KI), pria(_KB), pria(_KI), \+ menikah(_KB,_KI), anak(X,_KB), anaksulung(X), anak(_AI,_KI), anaksulung(_AI), \+ menikah(X,_AI), usia(X,_UX), usia(_AI,_UA), _UX > _UA.
+X = vanRossum ? 
+yes
+
+e) Pasangan dari ipar Aqua (X adalah ipar Y jika X adalah saudara dari suami/istri Y)
+Query: suami(_A,aqua), saudara(_P,_A), menikah(_P,X).
+X = vito ? 
+yes
+
+f) Cucu termuda dari Khelli
+Query: anak(_B,khelli), anak(X,_B), anakbungsu(X).
+X = patrick ?
+yes
+
+g) Orang yang menjadi anak kedua dari keluarganya (jika orang tuanya tidak terdefinisi, diasumsikan bukan anak kedua)
+Query: kakak(_A, X), anaksulung(_A), \+ (kakak(_B, X), _B \= _A).
+X = bambang ? ;
+X = power ? ;
+X = patrick ? 
+yes
+
+h) Orang tua yang memiliki tepat dua anak
+Query: anak(_A, X), anak(_B,X), kakak(_A,_B), \+ (anak(_C,X), _C \= _A, _C \= _B).
+X = gojo ? ;
+X = lovelace ? ;
+X = ave ? ;
+X = aqua ? 
+yes
+
+i) Orang yang punya mertua
+Query: menikah(X,_Z), orangtua(_Y,_Z), pria(_Y).
+X = vito ? ;
+X = power ? ;
+X = ave ? ;
+X = aqua ? ;
+X = wulandari ? 
+yes
+
+j) Wanita yang punya lebih dari 1 anak
+Query: wanita(X), anak(_B,X), kakak(_B,_Q), anaksulung(_B), anakbungsu(_Q).
+X = indah ? ;
+X = lovelace ? ;
+X = aqua ? 
+yes
+
+k) Orang yang belum pernah melahirkan ketika berusia di atas 20 tahun
+Query: wanita(X), usia(X,_U), _U > 20, (\+ orangtua(X,_Y) ; orangtua(X,_Y), anakbungsu(_Y), usia(_Y,_UAnak), _U - _UAnak =< 20).
+X = wulandari ? 
+yes
+
+l) Keturunan dari Gede yang umurnya tidak lebih kecil dari 25 tahun
+Query: keturunan(X,gede), usia(X,_U), _U >= 25.
+X = vanRossum ? ;
+X = bambang ? ;
+X = vito ? ;
+X = wesly ? 
+yes
+
+
+Bagian II
+1) combination
+combination(5, 2, X).
+X = 10
+yes
+
+combination(23, 1, X).
+X = 23
+yes
+
+combination(4, 0, X).
+X = 1
+yes
+
+2) change
+change(X,14).
+X = 4 ? 
+yes
+
+change(X,401).
+X = 81 ? 
+yes
+
+change(X,2022).
+X = 405 ? 
+yes
+
+3) fpb
+fpb(14,18,X).
+X = 2 ? 
+yes
+
+fpb(25,31,X).
+X = 1 ? 
+yes
+
+fpb(200,1,X).
+X = 1 ? 
+yes
+
+4) mod
+mod(5,2,X).
+X = 1
+yes
+
+mod(20,1,X).
+X = 0 ? 
+yes
+
+mod(2640,20,X).
+X = 0
+yes
+
+mod(-5,2,X).
+X = 1
+yes
+
+mod(7,-3,X).
+X = -2
+yes
+
+mod(-8,-3,X).
+X = -2
+yes
+
+mod(0,0,X).
+no
+
+5) deret
+deret(5, Y).
+Y = 10 ? 
+yes
+
+deret(1,Y).
+Y = 1 ? 
+yes
+
+deret(50,Y).
+Y = 50331647 ? 
+yes
+
+deret(-7,Y).
+no
+
+
+Bagian III
+A. Statistik List
+1) min
+min([9,-8,-7,11,-10], Min).
+Min = -10 ? 
+yes
+
+min([4], Min).
+Min = 4 ? 
+yes
+
+min([2,2,2,2,2,2], Min).
+Min = 2 ? 
+yes
+
+2) max
+max([9,-8,-7,11,-10], Max).
+Max = 11 ? 
+yes
+
+max([4], Max).
+Max = 4 ? 
+yes
+
+max([2,2,2,2], Max).
+Max = 2 ? 
+yes
+
+3) range
+range([9,-8,-7,11,-10], Range).
+Range = 21 ? 
+yes
+
+range([4], Range).
+Range = 0 ? 
+yes
+
+range([2,2,2,2,2], Range).
+Range = 0 ? 
+yes
+
+4) count
+count([9,-8,-7,11,-10], Count).
+Count = 5 ? 
+yes
+
+count([4], Count).
+Count = 1 ? 
+yes
+
+count([2,2,2,2,2], Count).
+Count = 5 ? 
+yes
+
+5) sum
+sum([9,-8,-7,11,-10], Sum).
+Sum = -5 ? 
+yes
+
+sum([4], Sum).
+Sum = 4 ? 
+yes
+
+sum([2,2,2,2,2], Sum).
+Sum = 10 ? 
+yes
+
+B. List and Queue Manipulation
+1) getIndex
+getIndex([1,2,5,-2,1,-4,-7], -2, Index).
+Index = 4 ? 
+yes
+
+getIndex([1,2,5,-2,1,-2,-7], -2, Index).
+Index = 4 ? 
+yes
+
+getIndex([1,2,5,-2,0,-2,-7], -11, Index).
+no
+
+2) Swap
+swap([5,6,7,8], 1, 1, Result).
+Result = [5,6,7,8] ? 
+yes
+
+swap([5,6,7,8], 4, 2, Result).
+Result = [5,8,7,6] ? 
+yes
+
+swap([5,6,7,8,9], 4, 6, Result).
+no
+
+3) splitList
+splitList([1,2,3,4,5,6], Ganjil, Genap).
+Ganjil = [1,3,5]
+Genap = [2,4,6] ? 
+yes
+
+splitList([1,2,3,4,5,6,7], Ganjil, Genap).
+Ganjil = [1,3,5,7]
+Genap = [2,4,6] ? 
+yes
+
+splitList([1,3,5,7], Ganjil, Genap).
+Ganjil = [1,3,5,7]
+Genap = [] ? 
+yes
+
+splitList([1,2,-3,-4,5], Ganjil, Genap).
+Ganjil = [1,-3,5]
+Genap = [2,-4] ? 
+yes
